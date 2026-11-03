@@ -1,0 +1,33 @@
+import { useEffect, useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { findConcept } from "@/lib/concept-projects";
+
+export const Route = createFileRoute("/work/$slug")({
+  head: ({ params }) => { const item = findConcept(params.slug); return { meta: [{ title: item ? `${item.title} — Project Story | Adversix Tech` : "Project Story | Adversix Tech" }, { name: "description", content: item?.description ?? "A digital project concept by Adversix Tech." }], links: [{ rel: "canonical", href: `https://adversix-tech.higgsfield.app/work/${params.slug}` }] }; },
+  component: ProjectStory,
+});
+type ProjectRecord = { id: string; slug: string; title: string; category: string; description: string; services: string[]; features: string[]; technologies: string[]; gallery: string[]; coverImage: string; desktopPreview: string | null; mobilePreview: string | null; previewUrl: string | null; featured: boolean; sortOrder: number; status: string };
+function ProjectStory() {
+  const { slug } = Route.useParams();
+  const concept = findConcept(slug);
+  const [project, setProject] = useState<ProjectRecord | null>(null);
+  const [checked, setChecked] = useState(false);
+  const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
+  useEffect(() => { void fetch("/api/portfolio").then((response) => response.json()).then((data: { projects?: ProjectRecord[] }) => setProject(data.projects?.find((item) => item.slug === slug) ?? null)).catch(() => setProject(null)).finally(() => setChecked(true)); }, [slug]);
+  const title = project?.title ?? (checked ? undefined : concept?.title);
+  const category = project?.category ?? (checked ? undefined : concept?.category);
+  const description = project?.description ?? (checked ? undefined : concept?.description);
+  const image = project?.coverImage ?? (checked ? undefined : concept?.image);
+  const features = project?.features ?? concept?.features ?? [];
+  const services = project?.services ?? ["Digital strategy", "UX & UI design", "Website development"];
+  const technologies = project?.technologies ?? concept?.technologies ?? [];
+  const gallery = project?.gallery ?? [];
+  const liveUrl = project?.previewUrl;
+  if (!checked) return <main className="project-story-missing"><h1>Loading project…</h1></main>;
+  if (!project || !title || !description || !image) return <main className="project-story-missing"><h1>Project not found</h1><Link to="/">Back to Adversix Tech</Link></main>;
+  return <main className={`project-story-page story-${slug}`}><header className="story-nav"><Link to="/" className="story-brand"><img src="/assets/brand/adversix-logo-light.png" alt="Adversix Tech" /></Link><a href="/#work"><ArrowLeft className="ui-icon" size={15} strokeWidth={1.7} aria-hidden="true" /> All projects</a></header><section className="story-hero"><div><span className="story-eyebrow">{category} · CONCEPT PROJECT</span><h1>{title}</h1><p>{description}</p><div className="story-services">{services.map((item) => <span key={item}>{item}</span>)}</div>{concept ? <Link className="story-preview-cta" to="/concepts/$slug" params={{ slug }}>Explore the website concept <ArrowUpRight className="ui-icon" size={15} strokeWidth={1.7} aria-hidden="true" /></Link> : liveUrl ? <a className="story-preview-cta" href={liveUrl} target="_blank" rel="noreferrer">View live project <ArrowUpRight className="ui-icon" size={15} strokeWidth={1.7} aria-hidden="true" /></a> : <span className="story-preview-cta story-no-live">Project presentation</span>}</div><img src={image} alt={`${title} concept art direction`} /></section><section className="story-overview"><div><span className="story-eyebrow">THE DESIGN DIRECTION</span><h2>{concept?.direction ?? "A distinctive digital experience."}</h2></div><p>{description} The experience is designed around clear service discovery, confident visual storytelling and an approachable path to enquiry or booking. This is a self-initiated demonstration concept, not a commissioned client project.</p></section>
+  {concept && <section className="story-preview-section"><div className="story-preview-heading"><div><span className="story-eyebrow">INTERACTIVE WEBSITE PREVIEW</span><h2>Explore the experience.</h2></div><div className="story-device-switch"><button className={device === "desktop" ? "active" : ""} onClick={() => setDevice("desktop")}>Desktop</button><button className={device === "mobile" ? "active" : ""} onClick={() => setDevice("mobile")}>Mobile</button></div></div><div className={`story-frame ${device}`}><iframe title={`${title} website concept preview`} src={`/concepts/${slug}`} loading="lazy" /></div><a className="story-open-preview" href={`/concepts/${slug}`} target="_blank" rel="noreferrer">Open concept in a new tab <ArrowUpRight className="ui-icon" size={15} strokeWidth={1.7} aria-hidden="true" /></a></section>}
+  {(project?.desktopPreview || project?.mobilePreview || gallery.length > 0) && <section className="story-screenshots"><span className="story-eyebrow">PROJECT SCREENSHOTS</span><h2>Designed across every screen.</h2><div className="story-screenshot-grid">{project?.desktopPreview && <figure><img src={project.desktopPreview} alt={`${title} desktop preview`} /><figcaption>Desktop presentation</figcaption></figure>}{project?.mobilePreview && <figure className="mobile-shot"><img src={project.mobilePreview} alt={`${title} mobile preview`} /><figcaption>Mobile presentation</figcaption></figure>}{gallery.map((url, index) => <figure key={url}><img src={url} alt={`${title} project screenshot ${index + 1}`} /><figcaption>Project detail {String(index + 1).padStart(2,"0")}</figcaption></figure>)}</div></section>}
+  <section className="story-capabilities"><div><span className="story-eyebrow">FEATURES & CAPABILITIES</span><h2>Designed to do more than look good.</h2></div><div className="story-feature-list">{features.map((feature, i) => <div key={feature}><span>0{i+1}</span><strong>{feature}</strong></div>)}</div></section><section className="story-tech"><div><span className="story-eyebrow">BUILD APPROACH</span><h2>Design, experience and engineering.</h2></div><div className="story-tech-tags">{technologies.map((tech) => <span key={tech}>{tech}</span>)}</div></section><footer className="story-footer"><Link to="/" className="story-brand"><img src="/assets/brand/adversix-logo-dark.png" alt="Adversix Tech" /></Link><span>© 2026 Adversix Tech · Concept project</span><a href="/#work">Back to all work <ArrowUpRight className="ui-icon" size={15} strokeWidth={1.7} aria-hidden="true" /></a></footer></main>;
+}
