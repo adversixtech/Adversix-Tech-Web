@@ -5,6 +5,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowUpRight, Moon, Sun } from "lucide-react";
@@ -61,7 +62,7 @@ function NotFoundComponent() {
   return <main className="not-found"><p>404</p><h1>This page is not here.</h1><a href="/">Return home <ArrowUpRight className="ui-icon" size={15} aria-hidden="true" /></a></main>;
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   return <main className="not-found"><p>Something went wrong</p><h1>The page could not load.</h1><button type="button" onClick={() => { router.invalidate(); reset(); }}>Try again</button></main>;

@@ -9,35 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
-import { Route as AppRouteImport } from './routes/app'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as WorkSlugRouteImport } from './routes/work.$slug'
-import { Route as MediaKeyRouteImport } from './routes/media.$key'
-import { Route as ConceptsSlugRouteImport } from './routes/concepts.$slug'
-import { Route as ApiUserRouteImport } from './routes/api.user'
-import { Route as ApiSocialImageRouteImport } from './routes/api.social-image'
-import { Route as ApiPortfolioUploadRouteImport } from './routes/api.portfolio-upload'
-import { Route as ApiPortfolioRouteImport } from './routes/api.portfolio'
-import { Route as ApiFaviconRouteImport } from './routes/api.favicon'
-import { Route as ApiContactRouteImport } from './routes/api.contact'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ApiBrandAssetsRouteImport } from './routes/api.brand-assets'
+import { Route as ApiContactRouteImport } from './routes/api.contact'
+import { Route as ApiFaviconRouteImport } from './routes/api.favicon'
+import { Route as ApiPortfolioRouteImport } from './routes/api.portfolio'
+import { Route as ApiPortfolioUploadRouteImport } from './routes/api.portfolio-upload'
+import { Route as ApiSocialImageRouteImport } from './routes/api.social-image'
+import { Route as ApiUserRouteImport } from './routes/api.user'
+import { Route as ConceptsSlugRouteImport } from './routes/concepts.$slug'
+import { Route as MediaKeyRouteImport } from './routes/media.$key'
+import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
-  id: '/robots.txt',
-  path: '/robots.txt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppRoute = AppRouteImport.update({
-  id: '/app',
-  path: '/app',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -45,49 +35,24 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkSlugRoute = WorkSlugRouteImport.update({
-  id: '/work/$slug',
-  path: '/work/$slug',
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MediaKeyRoute = MediaKeyRouteImport.update({
-  id: '/media/$key',
-  path: '/media/$key',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ConceptsSlugRoute = ConceptsSlugRouteImport.update({
-  id: '/concepts/$slug',
-  path: '/concepts/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiUserRoute = ApiUserRouteImport.update({
-  id: '/api/user',
-  path: '/api/user',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiSocialImageRoute = ApiSocialImageRouteImport.update({
-  id: '/api/social-image',
-  path: '/api/social-image',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPortfolioUploadRoute = ApiPortfolioUploadRouteImport.update({
-  id: '/api/portfolio-upload',
-  path: '/api/portfolio-upload',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPortfolioRoute = ApiPortfolioRouteImport.update({
-  id: '/api/portfolio',
-  path: '/api/portfolio',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiFaviconRoute = ApiFaviconRouteImport.update({
-  id: '/api/favicon',
-  path: '/api/favicon',
+const ApiBrandAssetsRoute = ApiBrandAssetsRouteImport.update({
+  id: '/api/brand-assets',
+  path: '/api/brand-assets',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiContactRoute = ApiContactRouteImport.update({
@@ -95,9 +60,44 @@ const ApiContactRoute = ApiContactRouteImport.update({
   path: '/api/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiBrandAssetsRoute = ApiBrandAssetsRouteImport.update({
-  id: '/api/brand-assets',
-  path: '/api/brand-assets',
+const ApiFaviconRoute = ApiFaviconRouteImport.update({
+  id: '/api/favicon',
+  path: '/api/favicon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPortfolioRoute = ApiPortfolioRouteImport.update({
+  id: '/api/portfolio',
+  path: '/api/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPortfolioUploadRoute = ApiPortfolioUploadRouteImport.update({
+  id: '/api/portfolio-upload',
+  path: '/api/portfolio-upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSocialImageRoute = ApiSocialImageRouteImport.update({
+  id: '/api/social-image',
+  path: '/api/social-image',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiUserRoute = ApiUserRouteImport.update({
+  id: '/api/user',
+  path: '/api/user',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptsSlugRoute = ConceptsSlugRouteImport.update({
+  id: '/concepts/$slug',
+  path: '/concepts/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaKeyRoute = MediaKeyRouteImport.update({
+  id: '/media/$key',
+  path: '/media/$key',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkSlugRoute = WorkSlugRouteImport.update({
+  id: '/work/$slug',
+  path: '/work/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -227,25 +227,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/robots.txt': {
-      id: '/robots.txt'
-      path: '/robots.txt'
-      fullPath: '/robots.txt'
-      preLoaderRoute: typeof RobotsDottxtRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -255,67 +241,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work/$slug': {
-      id: '/work/$slug'
-      path: '/work/$slug'
-      fullPath: '/work/$slug'
-      preLoaderRoute: typeof WorkSlugRouteImport
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/media/$key': {
-      id: '/media/$key'
-      path: '/media/$key'
-      fullPath: '/media/$key'
-      preLoaderRoute: typeof MediaKeyRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/concepts/$slug': {
-      id: '/concepts/$slug'
-      path: '/concepts/$slug'
-      fullPath: '/concepts/$slug'
-      preLoaderRoute: typeof ConceptsSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/user': {
-      id: '/api/user'
-      path: '/api/user'
-      fullPath: '/api/user'
-      preLoaderRoute: typeof ApiUserRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/social-image': {
-      id: '/api/social-image'
-      path: '/api/social-image'
-      fullPath: '/api/social-image'
-      preLoaderRoute: typeof ApiSocialImageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/portfolio-upload': {
-      id: '/api/portfolio-upload'
-      path: '/api/portfolio-upload'
-      fullPath: '/api/portfolio-upload'
-      preLoaderRoute: typeof ApiPortfolioUploadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/portfolio': {
-      id: '/api/portfolio'
-      path: '/api/portfolio'
-      fullPath: '/api/portfolio'
-      preLoaderRoute: typeof ApiPortfolioRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/favicon': {
-      id: '/api/favicon'
-      path: '/api/favicon'
-      fullPath: '/api/favicon'
-      preLoaderRoute: typeof ApiFaviconRouteImport
+    '/api/brand-assets': {
+      id: '/api/brand-assets'
+      path: '/api/brand-assets'
+      fullPath: '/api/brand-assets'
+      preLoaderRoute: typeof ApiBrandAssetsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/contact': {
@@ -325,11 +276,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/brand-assets': {
-      id: '/api/brand-assets'
-      path: '/api/brand-assets'
-      fullPath: '/api/brand-assets'
-      preLoaderRoute: typeof ApiBrandAssetsRouteImport
+    '/api/favicon': {
+      id: '/api/favicon'
+      path: '/api/favicon'
+      fullPath: '/api/favicon'
+      preLoaderRoute: typeof ApiFaviconRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/portfolio': {
+      id: '/api/portfolio'
+      path: '/api/portfolio'
+      fullPath: '/api/portfolio'
+      preLoaderRoute: typeof ApiPortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/portfolio-upload': {
+      id: '/api/portfolio-upload'
+      path: '/api/portfolio-upload'
+      fullPath: '/api/portfolio-upload'
+      preLoaderRoute: typeof ApiPortfolioUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/social-image': {
+      id: '/api/social-image'
+      path: '/api/social-image'
+      fullPath: '/api/social-image'
+      preLoaderRoute: typeof ApiSocialImageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/user': {
+      id: '/api/user'
+      path: '/api/user'
+      fullPath: '/api/user'
+      preLoaderRoute: typeof ApiUserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concepts/$slug': {
+      id: '/concepts/$slug'
+      path: '/concepts/$slug'
+      fullPath: '/concepts/$slug'
+      preLoaderRoute: typeof ConceptsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media/$key': {
+      id: '/media/$key'
+      path: '/media/$key'
+      fullPath: '/media/$key'
+      preLoaderRoute: typeof MediaKeyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/$slug': {
+      id: '/work/$slug'
+      path: '/work/$slug'
+      fullPath: '/work/$slug'
+      preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
